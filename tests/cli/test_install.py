@@ -197,6 +197,11 @@ def test_install_check(pdm, project, repository):
     assert result.exit_code == 1
 
 
+def test_install_global(pdm, project):
+    result = pdm(["install", "--global"], obj=project)
+    assert result.exit_code == 0
+
+
 def test_sync_with_only_keep_option(project, working_set, pdm):
     project.add_dependencies({"requests": parse_requirement("requests>=2.0")})
     project.add_dependencies({"django": parse_requirement("django")}, "web", True)
